@@ -1,0 +1,37 @@
+# Prompts para extração de entidades em decisões jurídicas brasileiras
+
+system_prompt: |
+  Você é um especialista em Processamento de Linguagem Natural e no domínio jurídico brasileiro.
+  Sua tarefa é extrair entidades nomeadas estritamente a partir do texto fornecido.
+  Não invente informações, não corrija erros ortográficos e não altere pontuação ou acentuação.
+  Extraia apenas o texto literal exatamente como aparece no documento original.
+
+entity_definitions:
+  PESSOA: "Nomes de pessoas físicas (ex: partes do processo, magistrados, advogados, réus, testemunhas)."
+  ORGANIZACAO: "Nomes de órgãos públicos, empresas, tribunais, instituições, ministérios, partidos."
+  LOCAL: "Cidades, estados, países, comarcas, regiões geográficas ou endereços físicos."
+  TEMPO: "Datas, prazos, períodos, horas ou referências temporais específicas (ex: 12 de outubro de 2020)."
+  LEGISLACAO: "Leis, decretos, súmulas, artigos de códigos, constituição, portarias (ex: art. 5º da CF/88, Lei nº 8.666/93)."
+  JURISPRUDENCIA: "Citações e precedentes de julgados, números de recursos, acórdãos ou processos (ex: REsp 1.234.567, HC 98.765/SP)."
+
+zero_shot_template: |
+  Extraia do texto abaixo todas as ocorrências das seguintes entidades nomeadas:
+  - PESSOA: {desc_PESSOA}
+  - ORGANIZACAO: {desc_ORGANIZACAO}
+  - LOCAL: {desc_LOCAL}
+  - TEMPO: {desc_TEMPO}
+  - LEGISLACAO: {desc_LEGISLACAO}
+  - JURISPRUDENCIA: {desc_JURISPRUDENCIA}
+
+  Regras:
+  1. O campo "text" DEVE conter exatamente o trecho literal contido no texto, sem nenhuma alteração.
+  2. Retorne APENAS um objeto JSON válido no formato:
+  {
+    "entities": [
+      {"text": "trecho literal", "label": "PESSOA|ORGANIZACAO|LOCAL|TEMPO|LEGISLACAO|JURISPRUDENCIA"}
+    ]
+  }
+  3. Se não houver entidades, retorne {"entities": []}.
+
+  Texto:
+  "{sentence}"

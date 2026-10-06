@@ -1,0 +1,47 @@
+# Configuração geral do benchmark NER: ML Tradicional vs LLM
+
+project:
+  name: "ner-llm-vs-ml"
+  random_seed: 42
+
+dataset:
+  name: "peluz/lener_br"
+  labels:
+    - "PESSOA"
+    - "ORGANIZACAO"
+    - "LOCAL"
+    - "TEMPO"
+    - "LEGISLACAO"
+    - "JURISPRUDENCIA"
+
+data_curves:
+  # Tamanhos de amostras de treino para a curva de aprendizado
+  train_sizes: [25, 50, 100, 250, 500, 1000, 2500, "all"]
+  seeds: [42, 123, 456]
+
+test_subsample:
+  # Para MVP com orçamento controlado: rodar piloto em 200 sentenças
+  pilot_size: 200
+  full: false
+
+models:
+  crf:
+    c1: 0.1
+    c2: 0.1
+    max_iterations: 100
+  bert:
+    pretrained: "neuralmind/bert-base-portuguese-cased"
+    batch_size: 16
+    lr: 2.0e-5
+    epochs: 4
+    device: "mps"  # Apple Silicon M4
+  gliner:
+    pretrained: "urchade/gliner_multi-v2.1"
+  llm:
+    provider: "openai"
+    model_id: "gpt-6-luna"  # Altere para gpt-4o-mini ou o modelo disponível na sua conta
+    temperature: 0.0
+    budget_limit_usd: 5.0
+    cost_per_million_input: 0.15   # Estimativa base mini
+    cost_per_million_output: 0.60
+    few_shot_k: [0, 5, 20]

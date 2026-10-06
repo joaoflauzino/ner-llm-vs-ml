@@ -1,0 +1,39 @@
+[project]
+name = "ner-llm-vs-ml"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "João Lucas Flauzino Cassiano", email = "joaolucas.apoio@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "accelerate>=1.15.0",
+    "datasets>=5.1.0",
+    "gliner>=0.2.24",
+    "matplotlib>=3.11.2",
+    "openai>=3.24.0",
+    "pandas>=3.0.6",
+    "pydantic>=2.13.5",
+    "pytest>=9.1.1",
+    "python-crfsuite>=0.9.12",
+    "python-dotenv>=1.2.4",
+    "pyyaml>=6.0.3",
+    "rich>=15.0.0",
+    "ruff>=0.16.10",
+    "scikit-learn>=1.9.1",
+    "seqeval>=1.2.2",
+    "sklearn-crfsuite>=0.5.0",
+    "spacy>=3.8.16",
+    "tenacity>=9.1.4",
+    "torch>=2.14.1",
+    "transformers>=5.18.0",
+    "typer>=0.27.2",
+]
+
+[project.scripts]
+ner-llm-vs-ml = "ner_llm_vs_ml:main"
+
+[build-system]
+requires = ["uv_build>=0.9.26,<0.10.0"]
+build-backend = "uv_build"
