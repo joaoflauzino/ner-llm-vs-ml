@@ -1,0 +1,106 @@
+{
+  "strict": {
+    "strict_precision": 0.45390070921985815,
+    "strict_recall": 0.5267489711934157,
+    "strict_f1": 0.4876190476190476,
+    "per_entity_strict": {
+      "JURISPRUDENCIA": {
+        "precision": 0.75,
+        "recall": 0.15,
+        "f1-score": 0.24999999999999997,
+        "support": 20
+      },
+      "LEGISLACAO": {
+        "precision": 0.08333333333333333,
+        "recall": 0.08333333333333333,
+        "f1-score": 0.08333333333333333,
+        "support": 24
+      },
+      "LOCAL": {
+        "precision": 0.5,
+        "recall": 0.5454545454545454,
+        "f1-score": 0.5217391304347826,
+        "support": 11
+      },
+      "ORGANIZACAO": {
+        "precision": 0.5486725663716814,
+        "recall": 0.5636363636363636,
+        "f1-score": 0.5560538116591929,
+        "support": 110
+      },
+      "PESSOA": {
+        "precision": 0.40229885057471265,
+        "recall": 0.7608695652173914,
+        "f1-score": 0.5263157894736842,
+        "support": 46
+      },
+      "TEMPO": {
+        "precision": 0.47619047619047616,
+        "recall": 0.625,
+        "f1-score": 0.5405405405405405,
+        "support": 32
+      },
+      "micro avg": {
+        "precision": 0.45390070921985815,
+        "recall": 0.5267489711934157,
+        "f1-score": 0.4876190476190476,
+        "support": 243
+      },
+      "macro avg": {
+        "precision": 0.46008253774503394,
+        "recall": 0.4547156346069389,
+        "f1-score": 0.4129971009069222,
+        "support": 243
+      },
+      "weighted avg": {
+        "precision": 0.4798264389523332,
+        "recall": 0.5267489711934157,
+        "f1-score": 0.47495009600979665,
+        "support": 243
+      }
+    }
+  },
+  "relaxed": {
+    "relaxed_precision": 0.6028368794326241,
+    "relaxed_recall": 0.6995884773662552,
+    "relaxed_f1": 0.6476190476190476,
+    "per_entity_relaxed": {
+      "ORGANIZACAO": {
+        "precision": 0.7079646017699115,
+        "recall": 0.7272727272727273,
+        "f1": 0.7174887892376682,
+        "support": 110
+      },
+      "PESSOA": {
+        "precision": 0.4482758620689655,
+        "recall": 0.8478260869565217,
+        "f1": 0.5864661654135339,
+        "support": 46
+      },
+      "JURISPRUDENCIA": {
+        "precision": 0.75,
+        "recall": 0.15,
+        "f1": 0.24999999999999997,
+        "support": 20
+      },
+      "TEMPO": {
+        "precision": 0.5714285714285714,
+        "recall": 0.75,
+        "f1": 0.6486486486486486,
+        "support": 32
+      },
+      "LEGISLACAO": {
+        "precision": 0.7083333333333334,
+        "recall": 0.7083333333333334,
+        "f1": 0.7083333333333334,
+        "support": 24
+      },
+      "LOCAL": {
+        "precision": 0.5833333333333334,
+        "recall": 0.6363636363636364,
+        "f1": 0.6086956521739131,
+        "support": 11
+      }
+    }
+  }
+}

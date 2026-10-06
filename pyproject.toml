@@ -32,8 +32,11 @@ dependencies = [
 ]
 
 [project.scripts]
-ner-llm-vs-ml = "ner_llm_vs_ml:main"
+ner-llm-vs-ml = "ner_llm_vs_ml.cli:main"
 
 [build-system]
 requires = ["uv_build>=0.9.26,<0.10.0"]
 build-backend = "uv_build"
+
+[tool.ruff.lint]
+ignore = ["B008"]
