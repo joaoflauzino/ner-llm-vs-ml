@@ -2,18 +2,23 @@
 
 from __future__ import annotations
 
+import json
 import os
 import time
 from pathlib import Path
 from typing import Any
 
 import yaml
+from dotenv import load_dotenv
 from openai import OpenAI
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 from ner_llm_vs_ml.data.lener import extract_entities_from_labels
 from ner_llm_vs_ml.llm.cache import BudgetTracker, ResponseCache
 from ner_llm_vs_ml.llm.parser import align_entities_to_tokens, parse_llm_json
+
+# Carrega variáveis do arquivo .env
+load_dotenv()
 
 
 class LLMNERClient:
@@ -70,9 +75,9 @@ class LLMNERClient:
         if few_shot_examples:
             demo_text = "\n\nExemplos de referência anotados:\n"
             for idx, ex in enumerate(few_shot_examples, 1):
-                demo_text += f"\nExemplo {idx}:\nTexto: \"{ex['text']}\"\n"
+                demo_text += f'\nExemplo {idx}:\nTexto: "{ex["text"]}"\n'
                 ents = extract_entities_from_labels(ex["tokens"], ex["ner_labels"])
-                demo_text += f'{{"entities": {ents}}}\n'
+                demo_text += f'{json.dumps({"entities": ents}, ensure_ascii=False)}\n'
             prompt = demo_text + "\n\nAgora analise o texto abaixo:\n" + prompt
 
         return prompt
@@ -91,7 +96,9 @@ class LLMNERClient:
         )
         content = response.choices[0].message.content or "{}"
         prompt_tokens = response.usage.prompt_tokens if response.usage else len(prompt) // 4
-        completion_tokens = response.usage.completion_tokens if response.usage else len(content) // 4
+        completion_tokens = (
+            response.usage.completion_tokens if response.usage else len(content) // 4
+        )
         return content, prompt_tokens, completion_tokens
 
     def extract_entities_for_sentence(

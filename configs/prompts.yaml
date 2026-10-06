@@ -26,12 +26,12 @@ zero_shot_template: |
   Regras:
   1. O campo "text" DEVE conter exatamente o trecho literal contido no texto, sem nenhuma alteração.
   2. Retorne APENAS um objeto JSON válido no formato:
-  {
+  {{
     "entities": [
-      {"text": "trecho literal", "label": "PESSOA|ORGANIZACAO|LOCAL|TEMPO|LEGISLACAO|JURISPRUDENCIA"}
+      {{"text": "trecho literal", "label": "PESSOA|ORGANIZACAO|LOCAL|TEMPO|LEGISLACAO|JURISPRUDENCIA"}}
     ]
-  }
-  3. Se não houver entidades, retorne {"entities": []}.
+  }}
+  3. Se não houver entidades, retorne {{"entities": []}}.
 
   Texto:
   "{sentence}"
