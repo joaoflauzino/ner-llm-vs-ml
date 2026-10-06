@@ -98,6 +98,52 @@ def train_crf(
         json.dump({"strict": strict, "relaxed": relaxed}, f, indent=2, default=_json_default)
 
 
+
+@app.command()
+def train_spacy(
+    n_iter: int = typer.Option(15, help="Número de iterações de treino"),
+    train_size: str = typer.Option("all", help="Número de sentenças para treino (ex: 500, all)"),
+    test_size: int = typer.Option(0, help="Número de sentenças de teste (0 para todas)"),
+    output_dir: Path = typer.Option(Path("results/spacy"), help="Diretório para salvar resultados"),
+):
+    """Treina e avalia o pipeline de NER do spaCy."""
+    from ner_llm_vs_ml.models.spacy_model import SpacyNERBaseline
+
+    console.print(f"[bold blue]Carregando dados para spaCy (treino: {train_size})...[/bold blue]")
+    ds = load_lener_br()
+    n_samples: int | str = int(train_size) if train_size.isdigit() else "all"
+    train_data = sample_train_split(ds["train"], n_samples)
+    test_data = ds["test"].select(range(test_size)) if test_size > 0 else ds["test"]
+
+    train_sents = [s["tokens"] for s in train_data]
+    train_labels = [s["ner_labels"] for s in train_data]
+    test_sents = [s["tokens"] for s in test_data]
+    test_labels = [s["ner_labels"] for s in test_data]
+
+    console.print(f"Treinando spaCy com {len(train_sents)} sentenças...")
+    sp = SpacyNERBaseline(n_iter=n_iter)
+    sp.fit(train_sents, train_labels)
+    console.print(f"[green]Treinado em {sp.train_time_sec:.2f}s![/green]")
+
+    preds = sp.predict(test_sents)
+    strict = compute_strict_metrics(test_labels, preds)
+    gold_entities = [extract_entities_from_labels(t, l) for t, l in zip(test_sents, test_labels)]
+    pred_entities = [extract_entities_from_labels(t, l) for t, l in zip(test_sents, preds)]
+    relaxed = compute_relaxed_metrics(gold_entities, pred_entities)
+
+    table = Table(title=f"Resultados spaCy (N={len(train_sents)})")
+    table.add_column("Métrica", style="cyan")
+    table.add_column("Valor", style="magenta")
+    table.add_row("Tempo de Treino", f"{sp.train_time_sec:.2f}s")
+    table.add_row("Strict F1", f"{strict['strict_f1']:.4f}")
+    table.add_row("Relaxed F1", f"{relaxed['relaxed_f1']:.4f}")
+    console.print(table)
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    with open(output_dir / "metrics.json", "w") as f:
+        json.dump({"strict": strict, "relaxed": relaxed}, f, indent=2, default=_json_default)
+
+
 @app.command()
 def train_bert(
     epochs: int = typer.Option(3, help="Número de épocas de fine-tuning"),
