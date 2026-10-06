@@ -299,6 +299,17 @@ def run_llm(
         )
 
 
+
+@app.command()
+def compare(
+    output_markdown: Path = typer.Option(Path("results/comparison_table.md"), help="Arquivo Markdown gerado"),
+):
+    """Compara todos os modelos avaliados e gera tabela consolidada para o artigo."""
+    from ner_llm_vs_ml.eval.report import generate_comparison_report
+
+    generate_comparison_report(output_markdown=output_markdown)
+
+
 def main():
     app()
 
