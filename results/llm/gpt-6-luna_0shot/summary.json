@@ -1,0 +1,128 @@
+{
+  "strict": {
+    "strict_precision": 0.6925287356321839,
+    "strict_recall": 0.765079365079365,
+    "strict_f1": 0.726998491704374,
+    "per_entity_strict": {
+      "JURISPRUDENCIA": {
+        "precision": 0.6470588235294118,
+        "recall": 0.6875,
+        "f1-score": 0.6666666666666667,
+        "support": 32
+      },
+      "LEGISLACAO": {
+        "precision": 0.7555555555555555,
+        "recall": 0.8292682926829268,
+        "f1-score": 0.7906976744186047,
+        "support": 41
+      },
+      "LOCAL": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6923076923076923,
+        "f1-score": 0.6923076923076923,
+        "support": 13
+      },
+      "ORGANIZACAO": {
+        "precision": 0.6575342465753424,
+        "recall": 0.6713286713286714,
+        "f1-score": 0.6643598615916956,
+        "support": 143
+      },
+      "PESSOA": {
+        "precision": 0.9230769230769231,
+        "recall": 0.9795918367346939,
+        "f1-score": 0.9504950495049506,
+        "support": 49
+      },
+      "TEMPO": {
+        "precision": 0.5517241379310345,
+        "recall": 0.8648648648648649,
+        "f1-score": 0.6736842105263158,
+        "support": 37
+      },
+      "micro avg": {
+        "precision": 0.6925287356321839,
+        "recall": 0.765079365079365,
+        "f1-score": 0.726998491704374,
+        "support": 315
+      },
+      "macro avg": {
+        "precision": 0.7045428964959933,
+        "recall": 0.7874768929864748,
+        "f1-score": 0.7397018591693209,
+        "support": 315
+      },
+      "weighted avg": {
+        "precision": 0.699541649921303,
+        "recall": 0.765079365079365,
+        "f1-score": 0.7277967346264281,
+        "support": 315
+      }
+    }
+  },
+  "relaxed": {
+    "relaxed_precision": 0.8103448275862069,
+    "relaxed_recall": 0.8952380952380953,
+    "relaxed_f1": 0.8506787330316743,
+    "per_entity_relaxed": {
+      "JURISPRUDENCIA": {
+        "precision": 0.9411764705882353,
+        "recall": 1.0,
+        "f1": 0.9696969696969697,
+        "support": 32
+      },
+      "PESSOA": {
+        "precision": 0.9423076923076923,
+        "recall": 1.0,
+        "f1": 0.9702970297029703,
+        "support": 49
+      },
+      "TEMPO": {
+        "precision": 0.603448275862069,
+        "recall": 0.9459459459459459,
+        "f1": 0.7368421052631577,
+        "support": 37
+      },
+      "ORGANIZACAO": {
+        "precision": 0.8082191780821918,
+        "recall": 0.8251748251748252,
+        "f1": 0.8166089965397925,
+        "support": 143
+      },
+      "LOCAL": {
+        "precision": 0.6923076923076923,
+        "recall": 0.6923076923076923,
+        "f1": 0.6923076923076923,
+        "support": 13
+      },
+      "LEGISLACAO": {
+        "precision": 0.8666666666666667,
+        "recall": 0.9512195121951219,
+        "f1": 0.9069767441860465,
+        "support": 41
+      }
+    }
+  },
+  "hallucination": {
+    "total_predicted": 360,
+    "verbatim_count": 360,
+    "verbatim_rate": 1.0,
+    "normalized_count": 0,
+    "normalized_rate": 0.0,
+    "hallucinated_count": 0,
+    "hallucinated_rate": 0.0,
+    "duplicates_count": 19,
+    "hallucination_by_label": {},
+    "sample_hallucinations": [],
+    "sample_normalized": []
+  },
+  "budget": {
+    "total_calls": 199,
+    "cached_hits": 1,
+    "total_prompt_tokens": 91382,
+    "total_completion_tokens": 31945,
+    "total_cost_usd": 0.0328743,
+    "budget_limit_usd": 0.5,
+    "budget_remaining_usd": 0.4671257
+  }
+}

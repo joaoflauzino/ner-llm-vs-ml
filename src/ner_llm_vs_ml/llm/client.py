@@ -30,7 +30,7 @@ class LLMNERClient:
     def __init__(
         self,
         model_id: str = "gpt-4o-mini",
-        temperature: float = 0.0,
+        temperature: float = 1,
         prompts_file: Path | str | None = None,
         budget_tracker: BudgetTracker | None = None,
         cache: ResponseCache | None = None,
